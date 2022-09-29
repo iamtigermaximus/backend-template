@@ -3,8 +3,9 @@ const Model = require('../models/model')
 const router = express.Router()
 
 //Post Method
-router.post('/post', (req, res) => {
-  const data = new Model({
+// localhost:5500/api/post
+router.post('/post', async (req, res) => {
+  const data = await new Model({
     name: req.body.name,
     age: req.body.age,
   })
@@ -18,6 +19,8 @@ router.post('/post', (req, res) => {
 })
 
 //Get all Method
+// localhost:5500/api/getAll
+
 router.get('/getAll', async (req, res) => {
   try {
     const data = await Model.find()
@@ -28,6 +31,8 @@ router.get('/getAll', async (req, res) => {
 })
 
 //Get by ID Method
+//localhost:5500/api/getOne/:id
+
 router.get('/getOne/:id', async (req, res) => {
   try {
     const data = await Model.findById(req.params.id)
@@ -38,6 +43,8 @@ router.get('/getOne/:id', async (req, res) => {
 })
 
 //Update by ID Method
+//localhost:5500/api/update/:id
+
 router.patch('/update/:id', async (req, res) => {
   try {
     const id = req.params.id
@@ -53,6 +60,8 @@ router.patch('/update/:id', async (req, res) => {
 })
 
 //Delete by ID Method
+//// localhost:5500/api/delete/:id
+
 router.delete('/delete/:id', async (req, res) => {
   try {
     const id = req.params.id

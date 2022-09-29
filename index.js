@@ -5,7 +5,14 @@ const mongoose = require('mongoose')
 const mongoString = process.env.DATABASE_URL
 const routes = require('./routes/routes')
 
-mongoose.connect(mongoString)
+mongoose.connect(
+  process.env.DATABASE_URL,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err) => {
+    console.log('connected')
+  }
+)
+
 const database = mongoose.connection
 const app = express()
 
